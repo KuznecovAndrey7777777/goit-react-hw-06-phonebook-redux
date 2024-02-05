@@ -33,21 +33,9 @@ export const contactsSlice = createSlice({
     reducers: {
         addContact: {
             reducer(state, action) {
-                if (
-                    state.contacts.find(
-                        existingContact => existingContact.name === action.payload.name
-                    )
-                ) {
-                    Notiflix.Notify.failure(
-                        `${action.payload.name} вже є у ваших контактах`
-                    );
-                } else {
-                    state.contacts.unshift(action.payload);
+                state.contacts.unshift(action.payload);
 
-                    Notiflix.Notify.success(
-                        `${action.payload.name} успішно додано до вашого телефонного букваря`
-                    );
-                }
+                Notiflix.Notify.success(`${action.payload.name} успішно додано до вашого телефонного букваря`);
             },
             prepare(name, number) {
                 return {
